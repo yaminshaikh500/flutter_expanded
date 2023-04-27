@@ -10,38 +10,77 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-            body: SafeArea(
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      padding: EdgeInsets.all(20),
-                      color: Colors.red,
-                      child: Text('1'),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      padding: EdgeInsets.all(20),
-                      color: Colors.blue,
-                      child: Text('2'),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      padding: EdgeInsets.all(20),
-                      color: Colors.green,
-                      child: Text('3'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ),
-        );
-    }
+      home: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              _customContainer(
+                  number: 8,
+                  color: Colors.red),
+              Expanded(
+                flex: 5,
+                child: Row(
+                  children: [
+                    _customContainer(
+                        number: 5,
+                        color: Colors.indigo),
+                    Expanded(
+                      flex: 3,
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      _customContainer(
+                                          number: 1,
+                                          color: Colors.green),
+                                      _customContainer(
+                                          number: 1,
+                                          color: Colors.lightBlue)
+                                    ],
+                                  ),
+                                ),
+                                _customContainer(number: 2, color: Colors.brown)
+                              ],
+                            ),
+                          ),
+                          _customContainer(
+                              number: 3,
+                              color: Colors.purple)
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+Widget _customContainer({
+  required int number,
+  required Color color,
+}){
+  return  Expanded(
+      flex: number,
+      child: Container(
+          constraints: BoxConstraints.expand(),
+          color: color,
+          child: Center(
+              child: Text('${number}',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                ),
+              )
+          ),
+          )
+      );
 }
